@@ -50,7 +50,7 @@ public class KmToMiPanel extends JPanel implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		DecimalFormat format = new DecimalFormat("0.###");
+		DecimalFormat format = new DecimalFormat("#,##0.###");
 		double km = Double.parseDouble(input.getText());
 		double mi = km / 1.609344;
 		output.setText(format.format(mi));
