@@ -1,6 +1,6 @@
 package converter;
 
-import java.awt.BorderLayout;
+import java.awt.GridLayout;
 
 import javax.swing.JFrame;
 
@@ -15,7 +15,7 @@ public class ConverterFrame extends JFrame {
 	private void init() {
 		setName("Metric to Imperial");
 		setSize(400, 200);
-		setLayout(new BorderLayout());
+		setLayout(new GridLayout(0, 3));
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 
