@@ -6,14 +6,12 @@ import java.awt.event.ActionListener;
 import java.text.DecimalFormat;
 
 import javax.swing.BorderFactory;
-import javax.swing.Box;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-public class KmToMiPanel extends JPanel implements ActionListener {
+public class LengthPanel extends JPanel implements ActionListener {
 
 	private static final long serialVersionUID = 1L;
 
@@ -23,7 +21,7 @@ public class KmToMiPanel extends JPanel implements ActionListener {
 	private JTextField output;
 	private JButton convertButton;
 
-	public KmToMiPanel() {
+	public LengthPanel() {
 		String[] metric = {"Kilometre", "Metre", "Decimetre", "Centimetre", "Millimetre"};
 		String[] imperial = {"Mile", "Yard", "Foot", "Inch"};
 

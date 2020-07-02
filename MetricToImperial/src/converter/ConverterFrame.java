@@ -8,10 +8,10 @@ public class ConverterFrame extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	
-	private KmToMiPanel kmToMi;
+	private LengthPanel kmToMi;
 	
 	public ConverterFrame() {
-		kmToMi = new KmToMiPanel();
+		kmToMi = new LengthPanel();
 		
 		init();
 	}
