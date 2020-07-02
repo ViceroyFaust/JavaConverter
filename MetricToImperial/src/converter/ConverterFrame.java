@@ -17,7 +17,7 @@ public class ConverterFrame extends JFrame {
 	}
 
 	private void init() {
-		setTitle("Metric to Imperial");
+		setTitle("Conversion");
 		setLayout(new GridLayout(0, 1, 20, 0));
 		setLocationRelativeTo(null);
 		setResizable(false);
