@@ -37,7 +37,7 @@ public class KmToMiPanel extends JPanel implements ActionListener {
 	}
 
 	private void init() {
-		setLayout(new GridLayout(3, 2, 15, 0));
+		setLayout(new GridLayout(3, 2, 15, 7));
 		setSize(468, 110);
 		setBorder(BorderFactory.createEmptyBorder(15, 10, 15, 10));
 		
