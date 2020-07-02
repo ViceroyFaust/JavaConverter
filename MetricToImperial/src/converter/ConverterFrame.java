@@ -20,6 +20,7 @@ public class ConverterFrame extends JFrame {
 		setTitle("Metric to Imperial");
 		setLayout(new GridLayout(0, 1, 20, 0));
 		setLocationRelativeTo(null);
+		setResizable(false);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 
 		add(kmToMi);

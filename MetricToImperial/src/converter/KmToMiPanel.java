@@ -8,6 +8,7 @@ import java.text.DecimalFormat;
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -15,35 +16,37 @@ import javax.swing.JTextField;
 public class KmToMiPanel extends JPanel implements ActionListener {
 
 	private static final long serialVersionUID = 1L;
-	
-	private JLabel kilometres;
-	private JLabel miles;
+
+	private JComboBox<String> mBox;
+	private JComboBox<String> imBox;
 	private JTextField input;
 	private JTextField output;
 	private JButton convertButton;
 
 	public KmToMiPanel() {
+		String[] metric = {"Kilometre", "Metre", "Decimetre", "Centimetre", "Millimetre"};
+		String[] imperial = {"Mile", "Yard", "Foot", "Inch"};
+
+		mBox = new JComboBox<String>(metric);
+		imBox = new JComboBox<String>(imperial);
 		input = new JTextField(12);
 		output = new JTextField(12);
 		convertButton = new JButton("Convert");
-		kilometres = new JLabel("Kilometres:");
-		miles = new JLabel("Miles:");
 		
 		init();
 	}
 
 	private void init() {
-		setLayout(new GridLayout(2, 3, 15, 0));
+		setLayout(new GridLayout(3, 2, 15, 0));
 		setSize(468, 110);
 		setBorder(BorderFactory.createEmptyBorder(15, 10, 15, 10));
 		
-		add(kilometres);
-		add(Box.createGlue());
-		add(miles);
-		
+		add(mBox);
 		add(input);
-		add(convertButton);
+		
+		add(imBox);
 		add(output);
+		add(convertButton);
 		
 		convertButton.addActionListener(this);
 	}
