@@ -16,8 +16,8 @@ public class LengthPanel extends JPanel implements ActionListener {
 
 	private JComboBox<String> mBox;
 	private JComboBox<String> imBox;
-	private JTextField input;
-	private JTextField output;
+	private JTextField mTxt;
+	private JTextField imTxt;
 	private JButton convertButton;
 
 	public LengthPanel() {
@@ -26,8 +26,8 @@ public class LengthPanel extends JPanel implements ActionListener {
 
 		mBox = new JComboBox<String>(metric);
 		imBox = new JComboBox<String>(imperial);
-		input = new JTextField(12);
-		output = new JTextField(12);
+		mTxt = new JTextField(12);
+		imTxt = new JTextField(12);
 		convertButton = new JButton("Convert");
 
 		init();
@@ -39,63 +39,37 @@ public class LengthPanel extends JPanel implements ActionListener {
 		setBorder(BorderFactory.createEmptyBorder(15, 10, 15, 10));
 
 		add(mBox);
-		add(input);
+		add(mTxt);
 
 		add(imBox);
-		add(output);
+		add(imTxt);
 
 		add(convertButton);
-
-		mBox.addActionListener(this);
-		imBox.addActionListener(this);
-
 		convertButton.addActionListener(this);
 
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if (e.getSource() == mBox) {
-			switch (mBox.getSelectedIndex()) {
-			case 0: // Kilometre
-				System.out.println("Kilometre");
-				break;
-			case 1: // Metre
-				System.out.println("Metre");
-				break;
-
-			case 2: // Decimetre
-				System.out.println("Decimetre");
-				break;
-			case 3: // Centimetre
-				System.out.println("Centimetre");
-				break;
-			case 4: // Millimetre
-				System.out.println("Millimetre");
-				break;
-			default:
-				System.out.println("This should not be possible");
-				break;
-			}
-		}
-		if (e.getSource() == imBox) {
-			switch (imBox.getSelectedIndex()) {
-			case 0: // Mile
-				System.out.println("Mile");
-				break;
-			case 1: // Yard
-				System.out.println("Yard");
-				break;
-			case 2: // Foot
-				System.out.println("Foot");
-				break;
-			case 3: // Inch
-				System.out.println("Inch");
-				break;
-			default:
-				System.out.println("This should not be possible");
-				break;
-			}
+		switch (mBox.getSelectedIndex()) {
+		case 0: // Km
+			
+			break;
+		case 1: // m
+			
+			break;
+		case 2: // dm
+			
+			break;
+		case 3: // cm
+			
+			break;
+		case 4: // mm
+			
+			break;
+		default:
+			System.out.println("This should not be possible");
+			break;
 		}
 	}
 }
