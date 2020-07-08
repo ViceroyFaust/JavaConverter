@@ -37,6 +37,9 @@ public class LengthPanel extends JPanel implements ActionListener {
 		setLayout(new GridLayout(3, 2, 15, 7));
 		setSize(468, 110);
 		setBorder(BorderFactory.createEmptyBorder(15, 10, 15, 10));
+		
+		mBox.setSelectedIndex(1); // Start with metres
+		imBox.setSelectedIndex(2); // Start with feet
 
 		add(mBox);
 		add(mTxt);
