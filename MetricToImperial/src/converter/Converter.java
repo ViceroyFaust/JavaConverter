@@ -12,57 +12,61 @@ public class Converter {
 	private final double CENTIMETRES_TO_METRES = 0.01;
 	private final double MILLIMETRES_TO_METRES = 0.001;
 
-	private double toMetresFactor; // Converting metric measure to metres
-	private double fromMetresFactor; // Converting from metres to imperial measure
+	private double metricToMetricFactor; // Converting metric measure to metres
+	private double metricToImperialFactor; // Converting from metres to imperial measure
 
 	public Converter(Length to, Length from) {
-		setToFactor(to);
-		setFromFactor(from);
+		setMetricToMetricFactor(to);
+		setMetricToImperialFactor(from);
 	}
 	
 	public Converter() {
 		this(Length.METRES, Length.FEET);
 	}
 
-	public void setToFactor(Length to) {
+	public void setMetricToMetricFactor(Length to) {
 		switch (to) {
 		case MILLIMETRES:
-			toMetresFactor = MILLIMETRES_TO_METRES;
+			metricToMetricFactor = MILLIMETRES_TO_METRES;
 			break;
 		case CENTIMETRES:
-			toMetresFactor = CENTIMETRES_TO_METRES;
+			metricToMetricFactor = CENTIMETRES_TO_METRES;
 			break;
 		case DECIMETRES:
-			toMetresFactor = DECIMETRES_TO_METRES;
+			metricToMetricFactor = DECIMETRES_TO_METRES;
 			break;
 		case METRES:
-			toMetresFactor = 1;
+			metricToMetricFactor = 1;
 			break;
 		case KILOMETRES:
-			toMetresFactor = KILOMETRES_TO_METRES;
+			metricToMetricFactor = KILOMETRES_TO_METRES;
 			break;
 		default:
-			toMetresFactor = 1;
+			metricToMetricFactor = 1;
 		}
 	}
 
-	public void setFromFactor(Length from) {
+	public void setMetricToImperialFactor(Length from) {
 		switch (from) {
 		case MILES:
-			fromMetresFactor = METRES_TO_MILES;
+			metricToImperialFactor = METRES_TO_MILES;
 			break;
 		case YARDS:
-			fromMetresFactor = METRES_TO_YARDS;
+			metricToImperialFactor = METRES_TO_YARDS;
 			break;
 		case FEET:
-			fromMetresFactor = METRES_TO_FEET;
+			metricToImperialFactor = METRES_TO_FEET;
 			break;
 		case INCHES:
-			fromMetresFactor = METRES_TO_INCHES;
+			metricToImperialFactor = METRES_TO_INCHES;
 			break;
 		default:
-			fromMetresFactor = METRES_TO_FEET;
+			metricToImperialFactor = METRES_TO_FEET;
 		}
+	}
+	
+	public double convert(double measure) {
+		return (measure * metricToMetricFactor) * metricToImperialFactor;
 	}
 
 	public static void main(String[] args) {

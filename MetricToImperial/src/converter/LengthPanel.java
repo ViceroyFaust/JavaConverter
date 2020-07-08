@@ -3,6 +3,7 @@ package converter;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.DecimalFormat;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -19,6 +20,9 @@ public class LengthPanel extends JPanel implements ActionListener {
 	private JTextField mTxt;
 	private JTextField imTxt;
 	private JButton convertButton;
+	
+	private DecimalFormat format;
+	private Converter converter;
 
 	public LengthPanel() {
 		String[] metric = { "Kilometre", "Metre", "Decimetre", "Centimetre", "Millimetre" };
@@ -29,6 +33,9 @@ public class LengthPanel extends JPanel implements ActionListener {
 		mTxt = new JTextField(12);
 		imTxt = new JTextField(12);
 		convertButton = new JButton("Convert");
+		
+		format = new DecimalFormat("#,##0.###");
+		converter = new Converter();
 
 		init();
 	}
@@ -56,23 +63,43 @@ public class LengthPanel extends JPanel implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		switch (mBox.getSelectedIndex()) {
 		case 0: // Km
-			
+			converter.setMetricToMetricFactor(Length.KILOMETRES);
 			break;
 		case 1: // m
-			
+			converter.setMetricToMetricFactor(Length.METRES);
 			break;
 		case 2: // dm
-			
+			converter.setMetricToMetricFactor(Length.DECIMETRES);
 			break;
 		case 3: // cm
-			
+			converter.setMetricToMetricFactor(Length.CENTIMETRES);
 			break;
 		case 4: // mm
-			
+			converter.setMetricToMetricFactor(Length.MILLIMETRES);
 			break;
 		default:
 			System.out.println("This should not be possible");
 			break;
 		}
+		
+		switch (imBox.getSelectedIndex()) {
+		case 0: // Mi
+			converter.setMetricToImperialFactor(Length.MILES);
+			break;
+		case 1: // Yd
+			converter.setMetricToImperialFactor(Length.YARDS);
+			break;
+		case 2: // Ft
+			converter.setMetricToImperialFactor(Length.FEET);
+			break;
+		case 3: // In
+			converter.setMetricToImperialFactor(Length.INCHES);
+			break;
+		default:
+			System.out.println("This should not be possible");
+			break;
+		}
+		
+		imTxt.setText(format.format(converter.convert(Double.parseDouble(mTxt.getText()))));
 	}
 }
