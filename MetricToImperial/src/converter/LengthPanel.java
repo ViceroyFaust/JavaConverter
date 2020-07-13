@@ -63,19 +63,19 @@ public class LengthPanel extends JPanel implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		switch (mBox.getSelectedIndex()) {
 		case 0: // Km
-			converter.setMetricToMetricFactor(Length.KILOMETRES);
+			converter.setFromFactor(Length.KILOMETRES);
 			break;
 		case 1: // m
-			converter.setMetricToMetricFactor(Length.METRES);
+			converter.setFromFactor(Length.METRES);
 			break;
 		case 2: // dm
-			converter.setMetricToMetricFactor(Length.DECIMETRES);
+			converter.setFromFactor(Length.DECIMETRES);
 			break;
 		case 3: // cm
-			converter.setMetricToMetricFactor(Length.CENTIMETRES);
+			converter.setFromFactor(Length.CENTIMETRES);
 			break;
 		case 4: // mm
-			converter.setMetricToMetricFactor(Length.MILLIMETRES);
+			converter.setFromFactor(Length.MILLIMETRES);
 			break;
 		default:
 			System.out.println("This should not be possible");
@@ -84,16 +84,16 @@ public class LengthPanel extends JPanel implements ActionListener {
 		
 		switch (imBox.getSelectedIndex()) {
 		case 0: // Mi
-			converter.setMetricToImperialFactor(Length.MILES);
+			converter.setToFactor(Length.MILES);
 			break;
 		case 1: // Yd
-			converter.setMetricToImperialFactor(Length.YARDS);
+			converter.setToFactor(Length.YARDS);
 			break;
 		case 2: // Ft
-			converter.setMetricToImperialFactor(Length.FEET);
+			converter.setToFactor(Length.FEET);
 			break;
 		case 3: // In
-			converter.setMetricToImperialFactor(Length.INCHES);
+			converter.setToFactor(Length.INCHES);
 			break;
 		default:
 			System.out.println("This should not be possible");
