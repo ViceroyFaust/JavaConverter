@@ -3,6 +3,7 @@ package converter;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 import java.text.DecimalFormat;
 
 import javax.swing.BorderFactory;
@@ -33,6 +34,7 @@ public class LengthPanel extends JPanel implements ActionListener {
 		mTxt = new JTextField(12);
 		imTxt = new JTextField(12);
 		convertButton = new JButton("Convert");
+		convertButton.setMnemonic(KeyEvent.VK_C);
 		
 		format = new DecimalFormat("#,##0.###");
 		converter = new Converter();
