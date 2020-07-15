@@ -22,7 +22,9 @@ public class LengthPanel extends JPanel implements ActionListener {
 	private JTextField outputText;
 	private JButton convertButton;
 
-	private DecimalFormat format;
+	private DecimalFormat standardFormat;
+	private DecimalFormat scienceFormat;
+
 	private Converter converter;
 
 	public LengthPanel() {
@@ -35,7 +37,9 @@ public class LengthPanel extends JPanel implements ActionListener {
 		convertButton = new JButton("Convert");
 		convertButton.setMnemonic(KeyEvent.VK_C);
 
-		format = new DecimalFormat("#,##0.000");
+		standardFormat = new DecimalFormat("#,##0.000");
+		scienceFormat = new DecimalFormat("0.0##E0");
+
 		converter = new Converter();
 
 		init();
@@ -126,6 +130,11 @@ public class LengthPanel extends JPanel implements ActionListener {
 			System.out.println("This should not be possible");
 		}
 
-		outputText.setText(format.format(converter.convert(Double.parseDouble(inputText.getText()))));
+		double convertedLength = converter.convert(Double.parseDouble(inputText.getText()));
+		if (convertedLength >= 1000000000 || convertedLength < .001) {
+			outputText.setText(scienceFormat.format(convertedLength));
+		} else {
+			outputText.setText(standardFormat.format(convertedLength));
+		}
 	}
 }
