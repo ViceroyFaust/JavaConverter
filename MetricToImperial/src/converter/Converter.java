@@ -41,6 +41,18 @@ public class Converter {
 		case KILOMETRES:
 			fromFactor = KILOMETRES_TO_METRES;
 			break;
+		case MILES:
+			fromFactor = 1 / METRES_TO_MILES;
+			break;
+		case YARDS:
+			fromFactor = 1 / METRES_TO_YARDS;
+			break;
+		case FEET:
+			fromFactor = 1 / METRES_TO_FEET;
+			break;
+		case INCHES:
+			fromFactor = 1 / METRES_TO_INCHES;
+			break;
 		default:
 			fromFactor = 1;
 		}
@@ -59,6 +71,21 @@ public class Converter {
 			break;
 		case INCHES:
 			toFactor = METRES_TO_INCHES;
+			break;
+		case KILOMETRES:
+			toFactor = 1 / KILOMETRES_TO_METRES;
+			break;
+		case METRES:
+			toFactor = 1;
+			break;
+		case DECIMETRES:
+			toFactor = 1 / DECIMETRES_TO_METRES;
+			break;
+		case CENTIMETRES:
+			toFactor = 1 / CENTIMETRES_TO_METRES;
+			break;
+		case MILLIMETRES:
+			toFactor = 1 / MILLIMETRES_TO_METRES;
 			break;
 		default:
 			toFactor = METRES_TO_FEET;
