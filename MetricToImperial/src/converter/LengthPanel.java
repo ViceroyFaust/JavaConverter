@@ -16,27 +16,26 @@ public class LengthPanel extends JPanel implements ActionListener {
 
 	private static final long serialVersionUID = 1L;
 
-	private JComboBox<String> mBox;
-	private JComboBox<String> imBox;
-	private JTextField mTxt;
-	private JTextField imTxt;
+	private JComboBox<String> inputBox;
+	private JComboBox<String> outputBox;
+	private JTextField inputText;
+	private JTextField outputText;
 	private JButton convertButton;
-	
+
 	private DecimalFormat format;
 	private Converter converter;
 
 	public LengthPanel() {
-		String[] metric = { "Kilometre", "Metre", "Decimetre", "Centimetre", "Millimetre" };
-		String[] imperial = { "Mile", "Yard", "Foot", "Inch" };
+		String[] choices = { "---METRIC---", "Kilometres", "Metres", "Decimetres", "Centimetres", "Millimetres", "---IMPERIAL---", "Miles", "Yards", "Feet", "Inches" };
 
-		mBox = new JComboBox<String>(metric);
-		imBox = new JComboBox<String>(imperial);
-		mTxt = new JTextField(12);
-		imTxt = new JTextField(12);
+		inputBox = new JComboBox<String>(choices);
+		outputBox = new JComboBox<String>(choices);
+		inputText = new JTextField(12);
+		outputText = new JTextField(12);
 		convertButton = new JButton("Convert");
 		convertButton.setMnemonic(KeyEvent.VK_C);
-		
-		format = new DecimalFormat("#,##0.###");
+
+		format = new DecimalFormat("#,##0.000");
 		converter = new Converter();
 
 		init();
@@ -46,15 +45,15 @@ public class LengthPanel extends JPanel implements ActionListener {
 		setLayout(new GridLayout(3, 2, 15, 7));
 		setSize(468, 110);
 		setBorder(BorderFactory.createEmptyBorder(15, 10, 15, 10));
-		
-		mBox.setSelectedIndex(1); // Start with metres
-		imBox.setSelectedIndex(2); // Start with feet
 
-		add(mBox);
-		add(mTxt);
+		inputBox.setSelectedIndex(1); // Start with metres
+		outputBox.setSelectedIndex(2); // Start with feet
 
-		add(imBox);
-		add(imTxt);
+		add(inputBox);
+		add(inputText);
+
+		add(outputBox);
+		add(outputText);
 
 		add(convertButton);
 		convertButton.addActionListener(this);
@@ -63,45 +62,70 @@ public class LengthPanel extends JPanel implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		switch (mBox.getSelectedIndex()) {
-		case 0: // Km
+		switch (inputBox.getSelectedIndex()) {
+		case 1: // Km
 			converter.setFromFactor(Length.KILOMETRES);
 			break;
-		case 1: // m
+		case 2: // m
 			converter.setFromFactor(Length.METRES);
 			break;
-		case 2: // dm
+		case 3: // dm
 			converter.setFromFactor(Length.DECIMETRES);
 			break;
-		case 3: // cm
+		case 4: // cm
 			converter.setFromFactor(Length.CENTIMETRES);
 			break;
-		case 4: // mm
+		case 5: // mm
 			converter.setFromFactor(Length.MILLIMETRES);
+			break;
+		case 7: // Mi
+			converter.setFromFactor(Length.MILES);
+			break;
+		case 8: // Yd
+			converter.setFromFactor(Length.YARDS);
+			break;
+		case 9: // Ft
+			converter.setFromFactor(Length.FEET);
+			break;
+		case 10: // In
+			converter.setFromFactor(Length.INCHES);
 			break;
 		default:
 			System.out.println("This should not be possible");
-			break;
 		}
-		
-		switch (imBox.getSelectedIndex()) {
-		case 0: // Mi
+
+		switch (outputBox.getSelectedIndex()) {
+		case 1: // Km
+			converter.setToFactor(Length.KILOMETRES);
+			break;
+		case 2: // m
+			converter.setToFactor(Length.METRES);
+			break;
+		case 3: // dm
+			converter.setToFactor(Length.DECIMETRES);
+			break;
+		case 4: // cm
+			converter.setToFactor(Length.CENTIMETRES);
+			break;
+		case 5: // mm
+			converter.setToFactor(Length.MILLIMETRES);
+			break;
+		case 7: // Mi
 			converter.setToFactor(Length.MILES);
 			break;
-		case 1: // Yd
+		case 8: // Yd
 			converter.setToFactor(Length.YARDS);
 			break;
-		case 2: // Ft
+		case 9: // Ft
 			converter.setToFactor(Length.FEET);
 			break;
-		case 3: // In
+		case 10: // In
 			converter.setToFactor(Length.INCHES);
 			break;
 		default:
 			System.out.println("This should not be possible");
-			break;
 		}
-		
-		imTxt.setText(format.format(converter.convert(Double.parseDouble(mTxt.getText()))));
+
+		outputText.setText(format.format(converter.convert(Double.parseDouble(inputText.getText()))));
 	}
 }
