@@ -34,6 +34,7 @@ public class LengthPanel extends JPanel implements ActionListener {
 		outputBox = new JComboBox<String>(choices);
 		inputText = new JTextField(12);
 		outputText = new JTextField(12);
+		outputText.setEditable(false);
 		convertButton = new JButton("Convert");
 		convertButton.setMnemonic(KeyEvent.VK_C);
 
@@ -131,7 +132,7 @@ public class LengthPanel extends JPanel implements ActionListener {
 		}
 
 		double convertedLength = converter.convert(Double.parseDouble(inputText.getText()));
-		if (convertedLength >= 1000000000 || convertedLength < .001) {
+		if (convertedLength >= 1000000000 || convertedLength < .1) {
 			outputText.setText(scienceFormat.format(convertedLength));
 		} else {
 			outputText.setText(standardFormat.format(convertedLength));
