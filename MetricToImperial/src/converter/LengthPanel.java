@@ -1,16 +1,11 @@
 package converter;
 
-import java.awt.GridLayout;
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.text.DecimalFormat;
-
-import javax.swing.BorderFactory;
-import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
 
 public class LengthPanel extends JPanel implements ActionListener {
 
@@ -25,7 +20,7 @@ public class LengthPanel extends JPanel implements ActionListener {
 	private DecimalFormat standardFormat;
 	private DecimalFormat scienceFormat;
 
-	private Converter converter;
+	private LengthConverter converter;
 
 	public LengthPanel() {
 		String[] choices = { "---METRIC---", "Kilometres", "Metres", "Decimetres", "Centimetres", "Millimetres", "---IMPERIAL---", "Miles", "Yards", "Feet", "Inches" };
@@ -41,7 +36,7 @@ public class LengthPanel extends JPanel implements ActionListener {
 		standardFormat = new DecimalFormat("#,##0.000");
 		scienceFormat = new DecimalFormat("0.0##E0");
 
-		converter = new Converter();
+		converter = new LengthConverter();
 
 		init();
 	}
@@ -96,7 +91,7 @@ public class LengthPanel extends JPanel implements ActionListener {
 			converter.setFromFactor(Length.INCHES);
 			break;
 		default:
-			System.out.println("This should not be possible");
+			System.out.println("Bad parametres");
 		}
 
 		switch (outputBox.getSelectedIndex()) {
@@ -128,7 +123,7 @@ public class LengthPanel extends JPanel implements ActionListener {
 			converter.setToFactor(Length.INCHES);
 			break;
 		default:
-			System.out.println("This should not be possible");
+			System.out.println("Bad parametres");
 		}
 
 		double convertedLength = converter.convert(Double.parseDouble(inputText.getText()));
