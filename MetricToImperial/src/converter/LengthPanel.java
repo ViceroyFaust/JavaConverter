@@ -9,128 +9,135 @@ import java.text.DecimalFormat;
 
 public class LengthPanel extends JPanel implements ActionListener {
 
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
+    private double previousNum;
+    private double previousIndex;
+    private LengthConverter converter;
 
-	private JComboBox<String> inputBox;
-	private JComboBox<String> outputBox;
-	private JTextField inputText;
-	private JTextField outputText;
-	private JButton convertButton;
+    private JComboBox<String> inputBox;
+    private JComboBox<String> outputBox;
+    private JTextField inputText;
+    private JTextField outputText;
+    private JButton convertButton;
 
-	private DecimalFormat standardFormat;
-	private DecimalFormat scienceFormat;
+    private DecimalFormat standardFormat;
+    private DecimalFormat scienceFormat;
 
-	private LengthConverter converter;
+    public LengthPanel() {
+        String[] choices = {"---METRIC---", "Kilometres", "Metres", "Decimetres", "Centimetres", "Millimetres", "---IMPERIAL---", "Miles", "Yards", "Feet", "Inches"};
+        previousNum = 0;
+        previousIndex = 1;
 
-	public LengthPanel() {
-		String[] choices = { "---METRIC---", "Kilometres", "Metres", "Decimetres", "Centimetres", "Millimetres", "---IMPERIAL---", "Miles", "Yards", "Feet", "Inches" };
+        inputBox = new JComboBox<>(choices);
+        outputBox = new JComboBox<>(choices);
+        inputText = new JTextField(12);
+        outputText = new JTextField(12);
+        outputText.setEditable(false);
+        convertButton = new JButton("Convert");
+        convertButton.setMnemonic(KeyEvent.VK_C);
 
-		inputBox = new JComboBox<String>(choices);
-		outputBox = new JComboBox<String>(choices);
-		inputText = new JTextField(12);
-		outputText = new JTextField(12);
-		outputText.setEditable(false);
-		convertButton = new JButton("Convert");
-		convertButton.setMnemonic(KeyEvent.VK_C);
+        standardFormat = new DecimalFormat("#,##0.000");
+        scienceFormat = new DecimalFormat("0.0##E0");
 
-		standardFormat = new DecimalFormat("#,##0.000");
-		scienceFormat = new DecimalFormat("0.0##E0");
+        init();
+    }
 
-		converter = new LengthConverter();
+    private void init() {
+        setLayout(new GridLayout(3, 2, 15, 7));
+        setSize(468, 110);
+        setBorder(BorderFactory.createEmptyBorder(15, 10, 15, 10));
 
-		init();
-	}
+        inputBox.setSelectedIndex(1); // Start with metres
+        outputBox.setSelectedIndex(2); // Start with feet
 
-	private void init() {
-		setLayout(new GridLayout(3, 2, 15, 7));
-		setSize(468, 110);
-		setBorder(BorderFactory.createEmptyBorder(15, 10, 15, 10));
+        add(inputBox);
+        add(inputText);
 
-		inputBox.setSelectedIndex(1); // Start with metres
-		outputBox.setSelectedIndex(2); // Start with feet
+        add(outputBox);
+        add(outputText);
 
-		add(inputBox);
-		add(inputText);
+        add(convertButton);
+        convertButton.addActionListener(this);
 
-		add(outputBox);
-		add(outputText);
+    }
 
-		add(convertButton);
-		convertButton.addActionListener(this);
+    @Override
+    public void actionPerformed(ActionEvent e) {
 
-	}
+        double input = Double.parseDouble(inputText.getText());
+        if (input != previousNum || inputBox.getSelectedIndex() != previousIndex) {
+            switch (inputBox.getSelectedIndex()) {
+                case 1: // Kilometres
+                    converter = new LengthConverter(LengthConverter.Length.KILOMETRE, input);
+                    break;
+                case 2: // Metres
+                    converter = new LengthConverter(LengthConverter.Length.METRE, input);
+                    break;
+                case 3: // Decimetres
+                    converter = new LengthConverter(LengthConverter.Length.DECIMETRE, input);
+                    break;
+                case 4: // Centimetres
+                    converter = new LengthConverter(LengthConverter.Length.CENTIMETRE, input);
+                    break;
+                case 5: // Millimetres
+                    converter = new LengthConverter(LengthConverter.Length.MILLIMETRE, input);
+                    break;
+                case 7: // Miles
+                    converter = new LengthConverter(LengthConverter.Length.MILE, input);
+                    break;
+                case 8: // Yards
+                    converter = new LengthConverter(LengthConverter.Length.YARD, input);
+                    break;
+                case 9: // Feet
+                    converter = new LengthConverter(LengthConverter.Length.FOOT, input);
+                    break;
+                case 10: // Inches
+                    converter = new LengthConverter(LengthConverter.Length.INCH, input);
+                    break;
+                default:
+                    // Should not be possible to get this result
+            }
+        }
+        previousNum = input;
+        previousIndex = inputBox.getSelectedIndex();
 
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		switch (inputBox.getSelectedIndex()) {
-		case 1: // Km
-			converter.setFromFactor(Length.KILOMETRES);
-			break;
-		case 2: // m
-			converter.setFromFactor(Length.METRES);
-			break;
-		case 3: // dm
-			converter.setFromFactor(Length.DECIMETRES);
-			break;
-		case 4: // cm
-			converter.setFromFactor(Length.CENTIMETRES);
-			break;
-		case 5: // mm
-			converter.setFromFactor(Length.MILLIMETRES);
-			break;
-		case 7: // Mi
-			converter.setFromFactor(Length.MILES);
-			break;
-		case 8: // Yd
-			converter.setFromFactor(Length.YARDS);
-			break;
-		case 9: // Ft
-			converter.setFromFactor(Length.FEET);
-			break;
-		case 10: // In
-			converter.setFromFactor(Length.INCHES);
-			break;
-		default:
-			System.out.println("Bad parametres");
-		}
+        double convertedLength;
+        switch (outputBox.getSelectedIndex()) {
+            case 1: // Kilometres
+                convertedLength = converter.convert(LengthConverter.Length.KILOMETRE);
+                break;
+            case 2: // Metres
+                convertedLength = converter.convert(LengthConverter.Length.METRE);
+                break;
+            case 3: // Decimetres
+                convertedLength = converter.convert(LengthConverter.Length.DECIMETRE);
+                break;
+            case 4: // Centimetres
+                convertedLength = converter.convert(LengthConverter.Length.CENTIMETRE);
+                break;
+            case 5: // Millimetres
+                convertedLength = converter.convert(LengthConverter.Length.MILLIMETRE);
+                break;
+            case 7: // Miles
+                convertedLength = converter.convert(LengthConverter.Length.MILE);
+                break;
+            case 8: // Yards
+                convertedLength = converter.convert(LengthConverter.Length.YARD);
+                break;
+            case 9: // Feet
+                convertedLength = converter.convert(LengthConverter.Length.FOOT);
+                break;
+            case 10: // Inches
+                convertedLength = converter.convert(LengthConverter.Length.INCH);
+                break;
+            default:
+                convertedLength = 0; // Should not be possible to get this result
+        }
 
-		switch (outputBox.getSelectedIndex()) {
-		case 1: // Km
-			converter.setToFactor(Length.KILOMETRES);
-			break;
-		case 2: // m
-			converter.setToFactor(Length.METRES);
-			break;
-		case 3: // dm
-			converter.setToFactor(Length.DECIMETRES);
-			break;
-		case 4: // cm
-			converter.setToFactor(Length.CENTIMETRES);
-			break;
-		case 5: // mm
-			converter.setToFactor(Length.MILLIMETRES);
-			break;
-		case 7: // Mi
-			converter.setToFactor(Length.MILES);
-			break;
-		case 8: // Yd
-			converter.setToFactor(Length.YARDS);
-			break;
-		case 9: // Ft
-			converter.setToFactor(Length.FEET);
-			break;
-		case 10: // In
-			converter.setToFactor(Length.INCHES);
-			break;
-		default:
-			System.out.println("Bad parametres");
-		}
-
-		double convertedLength = converter.convert(Double.parseDouble(inputText.getText()));
-		if (convertedLength >= 1000000000 || convertedLength < .1) {
-			outputText.setText(scienceFormat.format(convertedLength));
-		} else {
+        if (convertedLength >= 1000000000 || convertedLength < .1) {
+            outputText.setText(scienceFormat.format(convertedLength));
+        } else {
 			outputText.setText(standardFormat.format(convertedLength));
 		}
-	}
+    }
 }
