@@ -1,99 +1,92 @@
 package converter;
 
 public class LengthConverter {
+    public final double METRES;
     // Metre to imperial factors
-    private final double METRES_TO_MILES = 6.213712E-4;
-    private final double METRES_TO_YARDS = 1.093613;
-    private final double METRES_TO_FEET = 3.28084;
-    private final double METRES_TO_INCHES = 39.37;
+    public final double TO_MILES = 6.213712E-4;
+    public final double TO_YARDS = 1.093613;
+    public final double TO_FEET = 3.28084;
+    public final double TO_INCHES = 39.37;
     // metric to metre factors
-    private final double KILOMETRES_TO_METRES = 1000;
-    private final double DECIMETRES_TO_METRES = 0.1;
-    private final double CENTIMETRES_TO_METRES = 0.01;
-    private final double MILLIMETRES_TO_METRES = 0.001;
+    public final double TO_KILO = .001;
+    public final double TO_DECI = 10;
+    public final double TO_CENTI = 100;
+    public final double TO_MILLI = 1000;
 
-    private double fromFactor; // Converting metric measure to metres
-    private double toFactor; // Converting from metres to imperial measure
-
-    public LengthConverter(Length to, Length from) {
-        setFromFactor(to);
-        setToFactor(from);
+    public enum Length {
+        /* Metric */ KILOMETRE, METRE, DECIMETRE, CENTIMETRE, MILLIMETRE,
+        /* US Customary */ MILE, YARD, FOOT, INCH
     }
 
-    public LengthConverter() {
-        this(Length.METRES, Length.FEET);
+    public LengthConverter(Length unit, double unitLength) { ;
+            switch (unit) {
+                case KILOMETRE:
+                    METRES = unitLength / TO_KILO;
+                    break;
+                case METRE:
+                    METRES = unitLength;
+                    break;
+                case DECIMETRE:
+                    METRES = unitLength / TO_DECI;
+                    break;
+                case CENTIMETRE:
+                    METRES = unitLength / TO_CENTI;
+                    break;
+                case MILLIMETRE:
+                    METRES = unitLength / TO_MILLI;
+                    break;
+                case MILE:
+                    METRES = unitLength / TO_MILES;
+                    break;
+                case YARD:
+                    METRES = unitLength / TO_YARDS;
+                    break;
+                case FOOT:
+                    METRES = unitLength / TO_FEET;
+                    break;
+                case INCH:
+                    METRES = unitLength / TO_INCHES;
+                    break;
+                default:
+                    METRES = 0; // Should not be possible to get this result
+
+            }
     }
 
-    public void setFromFactor(Length to) { // Selects from which unit to convert
-        switch (to) {
-            case MILLIMETRES:
-                fromFactor = MILLIMETRES_TO_METRES;
+    public double convert(Length toConvert) {
+        double out;
+        switch (toConvert) {
+            case KILOMETRE:
+                out = METRES * TO_KILO;
                 break;
-            case CENTIMETRES:
-                fromFactor = CENTIMETRES_TO_METRES;
+            case METRE:
+                out = METRES;
                 break;
-            case DECIMETRES:
-                fromFactor = DECIMETRES_TO_METRES;
+            case DECIMETRE:
+                out = METRES * TO_DECI;
                 break;
-            case METRES:
-                fromFactor = 1;
+            case CENTIMETRE:
+                out = METRES * TO_CENTI;
                 break;
-            case KILOMETRES:
-                fromFactor = KILOMETRES_TO_METRES;
+            case MILLIMETRE:
+                out = METRES * TO_MILLI;
                 break;
-            case MILES:
-                fromFactor = 1 / METRES_TO_MILES;
+            case MILE:
+                out = METRES * TO_MILES;
                 break;
-            case YARDS:
-                fromFactor = 1 / METRES_TO_YARDS;
+            case YARD:
+                out = METRES * TO_YARDS;
                 break;
-            case FEET:
-                fromFactor = 1 / METRES_TO_FEET;
+            case FOOT:
+                out = METRES * TO_FEET;
                 break;
-            case INCHES:
-                fromFactor = 1 / METRES_TO_INCHES;
+            case INCH:
+                out = METRES * TO_INCHES;
                 break;
             default:
-                fromFactor = 0; // No conversion will be done if no unit is selected
+                out = 0; // Should not be possible to get this result
         }
-    }
-
-    public void setToFactor(Length from) { // Selects which unit to convert to
-        switch (from) {
-            case MILES:
-                toFactor = METRES_TO_MILES;
-                break;
-            case YARDS:
-                toFactor = METRES_TO_YARDS;
-                break;
-            case FEET:
-                toFactor = METRES_TO_FEET;
-                break;
-            case INCHES:
-                toFactor = METRES_TO_INCHES;
-                break;
-            case KILOMETRES:
-                toFactor = 1 / KILOMETRES_TO_METRES;
-                break;
-            case METRES:
-                toFactor = 1;
-                break;
-            case DECIMETRES:
-                toFactor = 1 / DECIMETRES_TO_METRES;
-                break;
-            case CENTIMETRES:
-                toFactor = 1 / CENTIMETRES_TO_METRES;
-                break;
-            case MILLIMETRES:
-                toFactor = 1 / MILLIMETRES_TO_METRES;
-                break;
-            default:
-                toFactor = 0; // No conversion will be done if no unit is selected
-        }
-    }
-
-    public double convert(double measure) {
-        return (measure * fromFactor) * toFactor;
+        return out;
     }
 
 }

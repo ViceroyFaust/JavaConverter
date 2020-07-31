@@ -1,5 +1,0 @@
-package converter;
-
-public enum Length {
-	KILOMETRES, METRES, DECIMETRES, CENTIMETRES, MILLIMETRES, MILES, YARDS, FEET, INCHES
-}
