@@ -1,29 +1,29 @@
 package converter;
 
-import java.awt.GridLayout;
-
-import javax.swing.JFrame;
+import javax.swing.*;
 
 public class ConverterFrame extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	
 	private LengthPanel kmToMi;
+	private JTabbedPane tabs;
 	
 	public ConverterFrame() {
 		kmToMi = new LengthPanel();
+		tabs = new JTabbedPane();
 		
 		init();
 	}
 
 	private void init() {
-		setTitle("Conversion");
-		setLayout(new GridLayout(0, 1, 20, 0));
+		setTitle("Converter");
 		setLocationRelativeTo(null);
 		setResizable(false);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 
-		add(kmToMi);
+		add(tabs);
+		tabs.addTab("Length", kmToMi);
 		
 		pack();
 		setVisible(true);
