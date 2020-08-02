@@ -18,34 +18,34 @@ public class LengthConverter {
         /* US Customary */ MILE, YARD, FOOT, INCH
     }
 
-    public LengthConverter(Length unit, double unitLength) { ;
+    public LengthConverter(Length unit, double unitVal) {
             switch (unit) {
                 case KILOMETRE:
-                    METRES = unitLength / TO_KILO;
+                    METRES = unitVal / TO_KILO;
                     break;
                 case METRE:
-                    METRES = unitLength;
+                    METRES = unitVal;
                     break;
                 case DECIMETRE:
-                    METRES = unitLength / TO_DECI;
+                    METRES = unitVal / TO_DECI;
                     break;
                 case CENTIMETRE:
-                    METRES = unitLength / TO_CENTI;
+                    METRES = unitVal / TO_CENTI;
                     break;
                 case MILLIMETRE:
-                    METRES = unitLength / TO_MILLI;
+                    METRES = unitVal / TO_MILLI;
                     break;
                 case MILE:
-                    METRES = unitLength / TO_MILES;
+                    METRES = unitVal / TO_MILES;
                     break;
                 case YARD:
-                    METRES = unitLength / TO_YARDS;
+                    METRES = unitVal / TO_YARDS;
                     break;
                 case FOOT:
-                    METRES = unitLength / TO_FEET;
+                    METRES = unitVal / TO_FEET;
                     break;
                 case INCH:
-                    METRES = unitLength / TO_INCHES;
+                    METRES = unitVal / TO_INCHES;
                     break;
                 default:
                     METRES = 0; // Should not be possible to get this result

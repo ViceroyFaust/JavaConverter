@@ -16,28 +16,28 @@ public class MassConverter {
         /* US Customary */ TON, POUND, OUNCE
     }
 
-    public MassConverter(Weight measure, double mass) {
-        switch (measure) {
+    public MassConverter(Weight unit, double unitVal) {
+        switch (unit) {
             case TONNE:
-                KILOGRAMMES = mass / TO_TONNE;
+                KILOGRAMMES = unitVal / TO_TONNE;
                 break;
             case KILOGRAMME:
-                KILOGRAMMES = mass;
+                KILOGRAMMES = unitVal;
                 break;
             case GRAMME:
-                KILOGRAMMES = mass / TO_GRAMME;
+                KILOGRAMMES = unitVal / TO_GRAMME;
                 break;
             case MILLIGRAMME:
-                KILOGRAMMES = mass / TO_MILLI;
+                KILOGRAMMES = unitVal / TO_MILLI;
                 break;
             case TON:
-                KILOGRAMMES = mass / TO_TON;
+                KILOGRAMMES = unitVal / TO_TON;
                 break;
             case POUND:
-                KILOGRAMMES = mass / TO_POUND;
+                KILOGRAMMES = unitVal / TO_POUND;
                 break;
             case OUNCE:
-                KILOGRAMMES = mass / TO_OUNCE;
+                KILOGRAMMES = unitVal / TO_OUNCE;
                 break;
             default:
                 KILOGRAMMES = 0; // This should not be possible
