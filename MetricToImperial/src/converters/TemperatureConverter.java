@@ -1,4 +1,4 @@
-package converter;
+package converters;
 
 public class TemperatureConverter {
     public final double UNITS_KELVIN;

@@ -1,4 +1,4 @@
-package converter;
+package converters;
 
 public class LengthConverter {
     public final double METRES;

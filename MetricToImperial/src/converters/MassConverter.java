@@ -1,4 +1,4 @@
-package converter;
+package converters;
 
 public class MassConverter {
     public final double KILOGRAMMES;

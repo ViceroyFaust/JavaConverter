@@ -1,4 +1,6 @@
-package converter;
+package gui;
+
+import converters.LengthConverter;
 
 import javax.swing.*;
 import java.awt.*;

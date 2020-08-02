@@ -1,2 +1,2 @@
 # MetricToImperial
-Simple measurement converter to practice Java Swing
+Simple measurement gui to practice Java Swing

@@ -1,4 +1,4 @@
-package converter;
+package gui;
 
 import javax.swing.*;
 

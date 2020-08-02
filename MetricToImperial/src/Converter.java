@@ -1,4 +1,4 @@
-package converter;
+import gui.ConverterFrame;
 
 public class Converter {
 
