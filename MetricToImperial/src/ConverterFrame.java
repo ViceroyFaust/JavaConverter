@@ -1,5 +1,3 @@
-package gui;
-
 import javax.swing.*;
 
 public class ConverterFrame extends JFrame {

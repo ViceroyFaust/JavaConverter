@@ -1,11 +1,5 @@
-package gui;
-
-import converter.LengthConverter;
-
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.text.DecimalFormat;
 
@@ -22,7 +16,7 @@ public class LengthPanel extends JPanel {
 	private DecimalFormat standardFormat;
 	private DecimalFormat scienceFormat;
 
-	private LengthConverter converter;
+	private Converter converter;
 
 	public LengthPanel() {
 		String[] choices = { "---METRIC---", "Kilometres", "Metres", "Decimetres", "Centimetres", "Millimetres", "---IMPERIAL---", "Miles", "Yards", "Feet", "Inches" };
@@ -38,7 +32,7 @@ public class LengthPanel extends JPanel {
 		standardFormat = new DecimalFormat("#,##0.000");
 		scienceFormat = new DecimalFormat("0.0##E0");
 
-		converter = new LengthConverter();
+		converter = new Converter();
 
 		init();
 	}
