@@ -1,5 +1,7 @@
 package converters;
 
+import enums.Volume;
+
 public class VolumeConverter {
     public final double CUBIC_METRES;
     // Cubic Metres to Imperial measures (fluid)
@@ -18,11 +20,6 @@ public class VolumeConverter {
     public final double TO_SI_TBSP = 66666.66667;
     public final double TO_SI_TSP = 200000;
     public final double TO_ML = 1E6;
-
-    public enum Volume {
-        /* US Customary */ CUBIC_FT, GALLON, QUART, PINT, US_CUP, OUNCE, CUBIC_IN, US_TBSP, US_TSP,
-        /* SI Metric */ CUBIC_METRE, LITRE, SI_CUP, SI_TBSP, SI_TSP, MILLILITRE
-    }
 
     public VolumeConverter(Volume unit, double unitVal) {
         switch (unit) {

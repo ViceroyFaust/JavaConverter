@@ -1,5 +1,7 @@
 package converters;
 
+import enums.Mass;
+
 public class MassConverter {
     public final double KILOGRAMMES;
     // Kilogramme to Imperial measures
@@ -11,12 +13,7 @@ public class MassConverter {
     public final double TO_GRAMME = 1000;
     public final double TO_MILLI = 1E-6;
 
-    public enum Weight {
-        /* Metric */ TONNE, KILOGRAMME, GRAMME, MILLIGRAMME,
-        /* US Customary */ TON, POUND, OUNCE
-    }
-
-    public MassConverter(Weight unit, double unitVal) {
+    public MassConverter(Mass unit, double unitVal) {
         switch (unit) {
             case TONNE:
                 KILOGRAMMES = unitVal / TO_TONNE;
@@ -44,7 +41,7 @@ public class MassConverter {
         }
     }
 
-    public double convert(Weight measure) {
+    public double convert(Mass measure) {
         double output;
         switch (measure) {
             case TONNE:

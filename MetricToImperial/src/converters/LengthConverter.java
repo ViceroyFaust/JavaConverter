@@ -1,5 +1,7 @@
 package converters;
 
+import enums.Length;
+
 public class LengthConverter {
     public final double METRES;
     // Metre to imperial factors
@@ -12,11 +14,6 @@ public class LengthConverter {
     public final double TO_DECI = 10;
     public final double TO_CENTI = 100;
     public final double TO_MILLI = 1000;
-
-    public enum Length {
-        /* Metric */ KILOMETRE, METRE, DECIMETRE, CENTIMETRE, MILLIMETRE,
-        /* US Customary */ MILE, YARD, FOOT, INCH
-    }
 
     public LengthConverter(Length unit, double unitVal) {
             switch (unit) {

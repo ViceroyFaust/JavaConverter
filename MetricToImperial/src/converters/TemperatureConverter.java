@@ -1,11 +1,9 @@
 package converters;
 
+import enums.Temperature;
+
 public class TemperatureConverter {
     public final double UNITS_KELVIN;
-
-    public enum Temperature {
-        KELVIN, CELSIUS, FAHRENHEIT
-    }
 
     public TemperatureConverter(Temperature unit, double unitVal) {
         switch (unit) {
