@@ -6,11 +6,11 @@ public class ConverterFrame extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	
-	private LengthPanel kmToMi;
+	private LengthPanel lengthPanel;
 	private JTabbedPane tabs;
 	
 	public ConverterFrame() {
-		kmToMi = new LengthPanel();
+		lengthPanel = new LengthPanel();
 		tabs = new JTabbedPane();
 		
 		init();
@@ -23,7 +23,7 @@ public class ConverterFrame extends JFrame {
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 
 		add(tabs);
-		tabs.addTab("Length", kmToMi);
+		tabs.addTab("Length", lengthPanel);
 		
 		pack();
 		setVisible(true);
