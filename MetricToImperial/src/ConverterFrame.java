@@ -34,8 +34,8 @@ public class ConverterFrame extends JFrame {
     private void init() {
         setTitle("Converter");
         setLocationRelativeTo(null);
-        setSize(400, 140);
-        setResizable(false);
+        setSize(400, 175);
+        setResizable(true);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
         add(tabs);
