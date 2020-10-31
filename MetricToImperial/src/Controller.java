@@ -12,19 +12,11 @@ public class Controller implements ActionListener {
         this.frame = frame;
     }
 
-    public double calculate(String from, String to, double val) {
-        return Converter.convert(from, to, val);
-    }
-
     public String numFormat(double val) {
-        if (val >= 1E9 || val < 0.1) { // If the number is bigger than billion or smaller than a tenth = Sci. Notation
+        if (Math.abs(val) >= 1E9 || Math.abs(val) < 0.1) { // If the number is bigger than billion or smaller than a tenth = Sci. Notation
             return sciNot.format(val);
         }
         return normal.format(val);
-    }
-
-    public void setPanelOutput(String output) {
-        frame.getSelectedPanel().setOutput(output);
     }
 
     @Override
